@@ -1,3 +1,16 @@
+task printStringVar << {
+    def name = 'Nexusunsky'
+    println 'singlequote algorithms:${name}'
+    println "doublequote define:$name"
+}
+
+task printStringClass << {
+    def str1 = 'single quote'
+    def str2 = "double quote"
+    println 'singlequote define:'+str1.getClass().name
+    println "doublequote define:"+str2.getClass().name
+}
+
 task hello{
     doLast{
         println'Hello World!'
