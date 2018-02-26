@@ -12,3 +12,12 @@ task wrapper(type: Wrapper){
     distributionPath = 'wrapper/dists'
     distributionUrl = 'https://services.gradle.org/distributions/gradle-4.5.1-all.zip' 
 }
+
+task printlog{
+    logger.quiet('quiet Log.')
+    logger.error('error Log.')
+    logger.warn('warn Log.')
+    logger.lifecycle('lifecycle Log.')
+    logger.info('info Log.')
+    logger.debug('debug Log.')
+}
