@@ -3,3 +3,12 @@ task hello{
         println'Hello World!'
     }
 }
+
+task wrapper(type: Wrapper){
+    gradleVersion = '4.5.1'
+    archiveBase = 'GRADLE_USER_HOME'
+    archivePath = 'wrapper/dists'
+    distributionBase = 'GRADLE_USER_HOME'
+    distributionPath = 'wrapper/dists'
+    distributionUrl = 'https://services.gradle.org/distributions/gradle-4.5.1-all.zip' 
+}
