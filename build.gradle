@@ -1,3 +1,92 @@
+//Closure is a Anonymous Method
+task configClosure << {
+   person {
+       personName = 'zhangsan'
+       personAge = 20
+       dumpPerson()
+   }
+}
+
+class Person1 {
+    String personName
+    int personAge
+    def dumpPerson (){
+       println "personName is ${personName},personAge is ${personAge}"
+    }
+}
+
+def dumpPerson (){
+       println "I am this.dumpPerson() Test for priority of delegate"
+}
+
+def person(Closure<Person1> closure) {
+    Person1 p1 = new Person1();
+    closure.delegate = p1
+    //Delegate First
+    closure()
+    closure.setResolveStrategy(Closure.DELEGATE_FIRST);
+    closure(p1)
+}
+
+task helloDelegate << {
+    new Delegate().test {
+        println "thisObject : ${thisObject.getClass()}" 
+        println "      this : ${this.getClass()}" 
+        println ''
+        println "     owner : ${owner.getClass()}" 
+        println "  delegate : ${delegate.getClass()}" 
+        println ''
+
+        method2()
+        it.method2()
+    }
+}
+
+def method2() {
+    println "Context this : ${this.getClass().name} in root"
+    println "method2 in root"
+}
+
+class Delegate {
+    def method2(){
+        println "Delegate this : ${this.getClass().name} in Delegate" 
+        println "method2 in Delegate"   
+    }
+
+    def test(Closure<Delegate> closure){
+        closure(this)
+    } 
+}
+
+//Closure is a Block of codes it's feature(flexible,light,reusable) 
+task helloClosure << {
+    //single param in closure
+    customEach {
+        println it
+    }
+
+    //multi param in closure
+    eachMap { k,v ->
+        println "${k} is ${v}"
+    }
+}
+
+def eachMap(closure){
+    def map = ["name":"","age":"17"]
+    map.each {
+        closure(it.key,it.value)
+    }
+}
+
+//Define CLosura Just One Param(Closure)
+//call Closure by 'closure()'
+def customEach(closure){
+    //模拟一个有十个元素的集合，迭代
+    for(int i in 1..10){
+        closure(i)
+    }
+}
+
 task helloJavaBean << {
     Person p = new Person()
 
