@@ -1,3 +1,40 @@
+task closetInMethod << {
+    def numlist =[1,2,3,4,5,6];
+    
+    numlist.each({println it})//Raw of Closet
+    
+    numlist.each() {//Groovy said : Closet can out of brackets like this
+        println it
+    }
+
+    numlist.each {//eventually we can ignore brackets
+        println it
+    }
+}
+
+task printMethodReturn << {
+  def add1 = method1 2,3
+  def add2 = method1 5,8
+  println "add1:${add1},add2:${add2}"
+}
+
+def method1 (int a,int b) {
+    if(a>b){
+        a
+    }else{
+        b
+    }
+}
+
+task testMethod << {
+    method(1,2)
+    method 1,2
+}
+
+def method (int a,int b) {
+    println a+b
+}
+
 task printMap << {
     def valMap =['width':12, 'height':34]
     println valMap.getClass().name
