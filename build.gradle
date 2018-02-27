@@ -1,3 +1,38 @@
+task printMap << {
+    def valMap =['width':12, 'height':34]
+    println valMap.getClass().name
+
+    println valMap['width'] // Get Value of key
+    println valMap.height
+   
+    valMap.each {
+        println "Key:${it.key},Val:${it.value}"
+    }
+}
+
+task printListEach << {
+    //Iterator the list throught 
+    def numlist =[1,2,3,4,5,6];
+    println numlist.getClass().name
+    println numlist[1]//the second item
+    println numlist[-1]//the last item
+    println numlist[-2]//the last second
+    println numlist[1..3]//the last two to four 
+
+    numlist.each {
+        println it
+    }
+}
+
+task printTestList << {
+    def numlist =[1,2,3,4,5,6];
+    println numlist.getClass().name
+    println numlist[1]//the second item
+    println numlist[-1]//the last item
+    println numlist[-2]//the last second
+    println numlist[1..3]//the last two to four 
+}
+
 task printStringVar << {
     def name = 'Nexusunsky'
     println 'singlequote algorithms:${name}'
