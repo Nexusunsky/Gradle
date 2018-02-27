@@ -1,3 +1,21 @@
+task helloJavaBean << {
+    Person p = new Person()
+
+    println "name is ${p.name}"
+    p.name = "LiSi"
+    println "name is ${p.name}"
+
+    println "age is ${p.age}"
+}
+
+class Person {
+    private String name;
+
+    public int getAge(){
+        17
+    }
+}
+
 task closetInMethod << {
     def numlist =[1,2,3,4,5,6];
     
