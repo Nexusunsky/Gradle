@@ -1,0 +1,8 @@
+task customTask1 {
+    doFirst {
+        println 'CustomTask1:doFirst'
+    }
+    doLast {
+        println 'CustomTask1:doLast'
+    }
+}

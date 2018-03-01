@@ -1,0 +1,4 @@
+rootProject.name = 'GradleLearning'
+
+include ':example2'
+project(':example2').projectDir = new File(rootDir, 'chapter03/example2')
