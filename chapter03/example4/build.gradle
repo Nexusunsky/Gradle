@@ -1,13 +1,14 @@
-task ex34Hello << {
+task ex34Main << {
     println 'hello'
 }
 
-ex34Hello.doFirst {
+ex34Main.doFirst {
     println 'world'
 }
 
-ex34Hello.doLast {
+ex34Main.doLast {
+    println "${age}"
     println 'world'
-    //Identify Project has a Property of task:ex34Hello
-    println project.hasProperty("ex34Hello")
+    //Identify Project has a Property of task:ex34Main
+    println project.hasProperty("ex34Main")
 }

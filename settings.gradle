@@ -8,3 +8,6 @@ project(':example3').projectDir = new File(rootDir, 'chapter03/example3')
 
 include ':example4'
 project(':example4').projectDir = new File(rootDir, 'chapter03/example4')
+
+include ':example5'
+project(':example5').projectDir = new File(rootDir, 'chapter03/example5')
