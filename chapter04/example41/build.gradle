@@ -1,0 +1,27 @@
+def Task ex41CreateTask1 = task('ex41CreateTask1')
+ex41CreateTask1.doLast {
+    println 'Show ways of Create task by (name)'
+}
+
+def Task ex41CreateTask2 = task('ex41CreateTask2', group: BasePlugin.BUILD_GROUP)
+ex41CreateTask2.doLast {
+    println " Description:Task ${name}`s group is ${ex41CreateTask2.group}"
+}
+
+task ex41CreateTask3 {
+    description 'Show ways of Create task by (name Closure)'
+    doLast {
+        println " Description: ${description}"
+    }
+}
+
+def Task ex41CreateTask4 = task('ex41CreateTask4', description: 'Show ways of Create task by (name Map Closure)', {
+    println " Description:Task ${name}`s description is ${ex41CreateTask4.description}"
+})
+
+tasks.create('ex41CreateTask5', {
+    println "Test TaskContainer.create()"
+})
+ex41CreateTask5.doFirst {
+    println 'Show ways of Create task by TaskContainer.create()'
+}
