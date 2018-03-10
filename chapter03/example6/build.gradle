@@ -1,0 +1,41 @@
+apply plugin: 'java'
+
+//define a property of a project
+ext.age = 18
+
+//define multi property
+ext {
+    phone = 1234567
+    address = 'Local'
+}
+
+sourceSets.all {
+    //define a prop resourcesDir for all sourceSets
+    //through ext --(Project and task eco`s property)
+    ext.resourcesDir = null
+    ext.testProp = 0
+}
+
+sourceSets {
+    main {
+        resourcesDir = 'main/res'
+        testProp = 'testProp'
+    }
+    test {
+        resourcesDir = 'test/res'
+        testProp = 'testProp'
+    }
+}
+
+
+task ex36Main << {
+    println "Age is  ${age}"
+    println "Phone is  ${phone}"
+    println "Address is  ${address}"
+    println "Test Root is  ${rootExt}"
+    println('')
+    sourceSets.each {
+        println "${it.name} `s resourcesDir is ${it.resourcesDir}"
+        println "${it.testProp}"
+    }
+}

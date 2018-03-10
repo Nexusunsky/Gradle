@@ -3,3 +3,7 @@ subprojects {
         jcenter()
     }
 }
+
+ext {
+    rootExt = 'I am root ext !'
+}
