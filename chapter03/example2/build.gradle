@@ -6,3 +6,12 @@ task customTask1 {
         println 'CustomTask1:doLast'
     }
 }
+
+tasks.create("customTask2") {
+    doFirst {
+        println 'CustomTask2:doFirst'
+    }
+    doLast {
+        println 'CustomTask2:doLast'
+    }
+}

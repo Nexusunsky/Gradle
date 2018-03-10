@@ -1,4 +1,7 @@
 rootProject.name = 'GradleLearning'
 
-include ':example2'
-project(':example2').projectDir = new File(rootDir, 'chapter03/example2')
+include ':example2'//指定Project名称
+project(':example2').projectDir = new File(rootDir, 'chapter03/example2')//指定对应Project的路径
+
+include ':example3'//指定Project名称
+project(':example3').projectDir = new File(rootDir, 'chapter03/example3')//指定对应Project的路径

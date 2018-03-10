@@ -1,0 +1,19 @@
+task ex33Hello << {
+    println 'hello'
+}
+task ex33World << {
+    println 'world'
+}
+
+task ex33Main(dependsOn: ex33Hello) {
+    doLast {
+        println 'main'
+    }
+}
+
+task ex33MultiTask {
+    dependsOn ex33Hello,ex33World
+    doLast {
+        println 'world'
+    }
+}
