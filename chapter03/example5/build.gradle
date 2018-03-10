@@ -1,0 +1,14 @@
+//定义一个project的属性
+ext.age = 18
+
+//通过代码块同时自定义过个属性
+ext {
+    phone = 1234567
+    address = 'Gloadl'
+}
+
+task ex35Main << {
+    println "Age is ${age}"
+    println "Phone is ${phone}"
+    println "Address is ${address}"
+}
