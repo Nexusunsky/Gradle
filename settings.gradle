@@ -1,5 +1,8 @@
 rootProject.name = 'GradleLearning'
 
+include ':chapter0102'//指定Project名称
+project(':chapter0102').projectDir = new File(rootDir, 'chapter0102')//指定对应Project的路径
+
 include ':example2'//指定Project名称
 project(':example2').projectDir = new File(rootDir, 'chapter03/example2')//指定对应Project的路径
 
@@ -36,3 +39,6 @@ project(':example46').projectDir = new File(rootDir, 'chapter04/example46')
 
 include ':example47'
 project(':example47').projectDir = new File(rootDir, 'chapter04/example47')
+
+include ':example48'
+project(':example48').projectDir = new File(rootDir, 'chapter04/example48')

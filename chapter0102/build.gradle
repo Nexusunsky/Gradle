@@ -1,22 +1,23 @@
 //Closure is a Anonymous Method
 task configClosure << {
-   person {
-       personName = 'zhangsan'
-       personAge = 20
-       dumpPerson()
-   }
+    person {
+        personName = 'zhangsan'
+        personAge = 20
+        dumpPerson()
+    }
 }
 
 class Person1 {
     String personName
     int personAge
-    def dumpPerson (){
-       println "personName is ${personName},personAge is ${personAge}"
+
+    def dumpPerson() {
+        println "personName is ${personName},personAge is ${personAge}"
     }
 }
 
-def dumpPerson (){
-       println "I am this.dumpPerson() Test for priority of delegate"
+def dumpPerson() {
+    println "I am this.dumpPerson() Test for priority of delegate"
 }
 
 def person(Closure<Person1> closure) {
@@ -30,11 +31,11 @@ def person(Closure<Person1> closure) {
 
 task helloDelegate << {
     new Delegate().test {
-        println "thisObject : ${thisObject.getClass()}" 
-        println "      this : ${this.getClass()}" 
+        println "thisObject : ${thisObject.getClass()}"
+        println "      this : ${this.getClass()}"
         println ''
-        println "     owner : ${owner.getClass()}" 
-        println "  delegate : ${delegate.getClass()}" 
+        println "     owner : ${owner.getClass()}"
+        println "  delegate : ${delegate.getClass()}"
         println ''
 
         method2()
@@ -48,14 +49,14 @@ def method2() {
 }
 
 class Delegate {
-    def method2(){
-        println "Delegate this : ${this.getClass().name} in Delegate" 
-        println "method2 in Delegate"   
+    def method2() {
+        println "Delegate this : ${this.getClass().name} in Delegate"
+        println "method2 in Delegate"
     }
 
-    def test(Closure<Delegate> closure){
+    def test(Closure<Delegate> closure) {
         closure(this)
-    } 
+    }
 }
 
 //Closure is a Block of codes it's feature(flexible,light,reusable) 
@@ -66,23 +67,23 @@ task helloClosure << {
     }
 
     //multi param in closure
-    eachMap { k,v ->
+    eachMap { k, v ->
         println "${k} is ${v}"
     }
 }
 
-def eachMap(closure){
-    def map = ["name":"","age":"17"]
+def eachMap(closure) {
+    def map = ["name": "", "age": "17"]
     map.each {
-        closure(it.key,it.value)
+        closure(it.key, it.value)
     }
 }
 
 //Define CLosura Just One Param(Closure)
 //call Closure by 'closure()'
-def customEach(closure){
+def customEach(closure) {
     //模拟一个有十个元素的集合，迭代
-    for(int i in 1..10){
+    for (int i in 1..10) {
         closure(i)
     }
 }
@@ -100,16 +101,16 @@ task helloJavaBean << {
 class Person {
     private String name;
 
-    public int getAge(){
+    public int getAge() {
         17
     }
 }
 
 task closetInMethod << {
-    def numlist =[1,2,3,4,5,6];
-    
-    numlist.each({println it})//Raw of Closet
-    
+    def numlist = [1, 2, 3, 4, 5, 6];
+
+    numlist.each({ println it })//Raw of Closet
+
     numlist.each() {//Groovy said : Closet can out of brackets like this
         println it
     }
@@ -120,35 +121,35 @@ task closetInMethod << {
 }
 
 task printMethodReturn << {
-  def add1 = method1 2,3
-  def add2 = method1 5,8
-  println "add1:${add1},add2:${add2}"
+    def add1 = method1 2, 3
+    def add2 = method1 5, 8
+    println "add1:${add1},add2:${add2}"
 }
 
-def method1 (int a,int b) {
-    if(a>b){
+def method1(int a, int b) {
+    if (a > b) {
         a
-    }else{
+    } else {
         b
     }
 }
 
 task testMethod << {
-    method(1,2)
-    method 1,2
+    method(1, 2)
+    method 1, 2
 }
 
-def method (int a,int b) {
-    println a+b
+def method(int a, int b) {
+    println a + b
 }
 
 task printMap << {
-    def valMap =['width':12, 'height':34]
+    def valMap = ['width': 12, 'height': 34]
     println valMap.getClass().name
 
     println valMap['width'] // Get Value of key
     println valMap.height
-   
+
     valMap.each {
         println "Key:${it.key},Val:${it.value}"
     }
@@ -156,7 +157,7 @@ task printMap << {
 
 task printListEach << {
     //Iterator the list throught 
-    def numlist =[1,2,3,4,5,6];
+    def numlist = [1, 2, 3, 4, 5, 6];
     println numlist.getClass().name
     println numlist[1]//the second item
     println numlist[-1]//the last item
@@ -169,7 +170,7 @@ task printListEach << {
 }
 
 task printTestList << {
-    def numlist =[1,2,3,4,5,6];
+    def numlist = [1, 2, 3, 4, 5, 6];
     println numlist.getClass().name
     println numlist[1]//the second item
     println numlist[-1]//the last item
@@ -186,26 +187,26 @@ task printStringVar << {
 task printStringClass << {
     def str1 = 'single quote'
     def str2 = "double quote"
-    println 'singlequote define:'+str1.getClass().name
-    println "doublequote define:"+str2.getClass().name
+    println 'singlequote define:' + str1.getClass().name
+    println "doublequote define:" + str2.getClass().name
 }
 
-task hello{
-    doLast{
-        println'Hello World!'
+task hello {
+    doLast {
+        println 'Hello World!'
     }
 }
 
-task wrapper(type: Wrapper){
+task wrapper(type: Wrapper) {
     gradleVersion = '4.5.1'
     archiveBase = 'GRADLE_USER_HOME'
     archivePath = 'wrapper/dists'
     distributionBase = 'GRADLE_USER_HOME'
     distributionPath = 'wrapper/dists'
-    distributionUrl = 'https://services.gradle.org/distributions/gradle-4.5.1-all.zip' 
+    distributionUrl = 'https://services.gradle.org/distributions/gradle-4.5.1-all.zip'
 }
 
-task printlog{
+task printlog << {
     logger.quiet('quiet Log.')
     logger.error('error Log.')
     logger.warn('warn Log.')
