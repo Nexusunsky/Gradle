@@ -1,0 +1,20 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.2.0'
+    }
+}
+
+//apply {
+//    plugin 'com.android.application'
+//}
+
+//plugins DSL是一种全新的插件应用方式
+//使用plugins 来应用插件时  如果该插件已经被托管在https://plugins.gradle.org/网站上，
+//就不需要在buildscript里面配置classpath 依赖，直接使用plugins即可应用
+plugins {
+    id 'java'
+    id 'org.sonarqube' version '1.2'
+}
