@@ -1,0 +1,19 @@
+def Task myTask = task 'ex44TaskOrderAnalysis', type: CustomTask
+//执行Task的时候就是遍历执行actions List
+myTask.doFirst {
+    println("ex44TaskOrderAnalysis.doFirst")
+}
+
+myTask.doLast {
+    println("ex44TaskOrderAnalysis.doLast")
+}
+
+class CustomTask extends DefaultTask {
+    //@TaskAction 注解指明该方法doSelf就是Task本身执行要执行的方法
+    //创建Task的时候，Gradle会解析带有@TaskAction标注的方法作为其Task执行的action
+    //然后通过Task 中的成员Method prependParallelSafeAction() 把该Action添加到actions List中
+    @TaskAction
+    def doSelf() {
+        println("ex44TaskOrderAnalysis.doSelf")
+    }
+}
