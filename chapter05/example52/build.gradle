@@ -1,0 +1,31 @@
+//应用脚本插件方式:
+//区别于真正插件在于其关键字是from关键字，后面紧跟一个脚本文件
+//脚本插件不是一个真正意义上的插件，但却是脚本文件模块化的基础
+//我们可以把庞大的脚本文件，进行分块，分段整理，拆分成一个个公用，指责分明的文件
+//然后使用apply from 来引用
+
+//     Project.apply()方法有三种使用方式
+//     apply
+//        void apply(Map<String, ?> options);
+//        void apply(Closure closure);
+//        void apply(Action<? super ObjectConfigurationAction> action);
+
+apply plugin: 'java'
+//apply from: 'version.gradle'
+
+//apply {
+//    from 'version.gradle'
+//}
+
+apply(new Action<ObjectConfigurationAction>() {
+    @Override
+    void execute(final ObjectConfigurationAction objectConfigurationAction) {
+        objectConfigurationAction.from('version.gradle')
+    }
+})
+
+task ex52ApplyGradlePlugin << {
+    println "VersionName is ${versionName}"
+    println "VersionCode is ${versionCode}"
+}
+
