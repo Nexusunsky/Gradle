@@ -15,8 +15,9 @@ project(':example5').projectDir = new File(rootDir, 'chapter03/example5')
 include ':example6'
 project(':example6').projectDir = new File(rootDir, 'chapter03/example6')
 
-include ':example41'
-project(':example41').projectDir = new File(rootDir, 'chapter04/example41')
+//Hide for Ignore ConfigurationClosure
+//include ':example41'
+//project(':example41').projectDir = new File(rootDir, 'chapter04/example41')
 
 include ':example42'
 project(':example42').projectDir = new File(rootDir, 'chapter04/example42')
@@ -32,3 +33,6 @@ project(':example45').projectDir = new File(rootDir, 'chapter04/example45')
 
 include ':example46'
 project(':example46').projectDir = new File(rootDir, 'chapter04/example46')
+
+include ':example47'
+project(':example47').projectDir = new File(rootDir, 'chapter04/example47')

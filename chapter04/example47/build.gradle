@@ -1,0 +1,67 @@
+//断言就是一个条件表达式
+//Task 有一个 Method: onlyIf(Closure)
+//如果该Closure 返回true 则执行该任务，否则返回false
+
+final String BUILD_APPS = "build_apps"
+final String BUILD_APPS_ALL = "all"
+final String BUILD_APPS_STARTING = "starting"
+final String BUILD_APPS_EXCLUDE_STARTING = "exclude_starting"
+
+task qqRelease << {
+    println 'Build QQ Release'
+}
+
+task baiduRelease << {
+    println 'Baidu Build Release'
+}
+
+task huaweiRelease << {
+    println 'Build Huawei Release'
+}
+
+task miuiRelease << {
+    println 'Build MIUI Release'
+}
+
+task buildRelease {
+    group BasePlugin.BUILD_GROUP
+    description 'Build Release Production'
+}
+
+buildRelease.dependsOn qqRelease, baiduRelease, huaweiRelease, miuiRelease
+
+qqRelease.onlyIf {
+    def execute = false
+    if (project.hasProperty(BUILD_APPS)) {
+        Object property = project.property(BUILD_APPS)
+        execute = BUILD_APPS_ALL == property || BUILD_APPS_STARTING == property
+    }
+    execute
+}
+
+baiduRelease.onlyIf {
+    def execute = false
+    if (project.hasProperty(BUILD_APPS)) {
+        Object property = project.property(BUILD_APPS)
+        execute = BUILD_APPS_ALL == property || BUILD_APPS_STARTING == property
+    }
+    execute
+}
+
+huaweiRelease.onlyIf {
+    def execute = false
+    if (project.hasProperty(BUILD_APPS)) {
+        Object property = project.property(BUILD_APPS)
+        execute = BUILD_APPS_ALL == property || BUILD_APPS_EXCLUDE_STARTING == property
+    }
+    execute
+}
+
+miuiRelease.onlyIf {
+    def execute = false
+    if (project.hasProperty(BUILD_APPS)) {
+        Object property = project.property(BUILD_APPS)
+        execute = BUILD_APPS_ALL == property || BUILD_APPS_EXCLUDE_STARTING == property
+    }
+    execute
+}
