@@ -1,0 +1,31 @@
+task ex42AccessTask << {
+    println 'I am ex42AccessTask'
+}
+
+//通过Task名称访问
+ex42AccessTask.doLast {
+    println("ex42AccessTask.doLast")
+}
+
+//通过Groovy中[]操作符访问TaskContainer中task
+tasks['ex42AccessTask'].doFirst {
+    println("ex42AccessTask.doFirst")
+}
+
+task ex43AccessTask
+//通过路径访问的方式既可以使用路径也可以使用task名称
+tasks['ex43AccessTask'].doFirst {
+    println tasks.findByPath(':example42:ex42AccessTask')
+    println tasks.getByPath(':example42:ex42AccessTask')
+    println tasks.findByPath(':example42:NotaTask')//找不到 返回null
+//  println tasks.getByPath(':example42:NotaTask')//找不到 抛UnknownTaskException异常
+}
+
+task ex44AccessTask
+//通过Groovy中[]操作符访问TaskContainer中task
+tasks['ex44AccessTask'].doFirst {
+    println tasks.findByName('ex42AccessTask')
+    println tasks.getByName('ex42AccessTask')
+    println tasks.findByName('NotaTask')
+//    println tasks.getByPath(':example42:NotaTask')
+}
