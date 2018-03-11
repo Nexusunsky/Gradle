@@ -1,0 +1,29 @@
+//Base:
+/*
+* 1,创建的任务都是在TaskContainer里，并受其管理；
+* 2,当访问Task的时候都是通过TaskContainer进行访问的；
+* 3,TaskContainer是一个NamedDomainObjectCollection的子类型；
+* 4,NamedDomainObjectCollection 名称领域对象集合:所有的元素均具有唯一不变的名字（String）
+* 5,唯一不变的名称方便获取该Task元素，实现通过名称获取任务实例;
+* 6,规则：在通过名称不能获取到想要的任务时，通过规则处理这样的类型情况：
+* */
+
+//  Source Code:
+//            public T findName(String name) {
+//                T value = findByNameWithoutRules(name);
+//                if (value != null) {
+//                    return value;
+//                }
+//                applyRules(name);
+//                return findByNameWithoutRules(name);
+//            }
+
+tasks.addRule("Description for the Rule, Convinent For Debug and reference.") { String taskName ->
+    task(taskName) << {
+        println("The Task Named ${taskName} is not Exist,Please double Confirm first.")
+    }
+}
+
+task ex48TaskRule {
+    dependsOn missTask
+}
