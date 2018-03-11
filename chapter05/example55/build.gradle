@@ -1,0 +1,11 @@
+apply {
+    plugin Ex54CustomPlugin
+}
+
+class Ex54CustomPlugin implements Plugin<Project> {
+    void apply(Project project) {
+        project.task('ex54CustomTask') << {
+            println "Using plugin Ex54CustomPlugin for create a task ex54CustomTask."
+        }
+    }
+}
