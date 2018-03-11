@@ -1,0 +1,8 @@
+def Task myTask = task 'ex43TaskConfiguration'
+myTask.group = BasePlugin.BUILD_GROUP
+myTask.description = 'This a Build Task Introduce'
+
+myTask.doLast {
+    println "group:${group},"
+    println "description:${description}"
+}
