@@ -1,6 +1,8 @@
 # Mac File
 .DS_Store
 
+#LocalFiles
 .gradle
 .idea/
-GradleLe.iml
+*.iml
+local.properties
