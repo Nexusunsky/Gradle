@@ -1,13 +1,20 @@
-##自定义插件
-很多时候我们需要自定义插件来辅助项目的构建
-自定义插件涉及的知识点很多：创建任务，创建方法，进行约定等
-
-方式：
-    1，自定义的插件必须要实现Plugin接口，这个接口只有一个apply方法，
-    该方法在插件被应用的时候执行，因此我们可以实现这个方法，来实现目标
-    2，定义在Build脚本文件里面的插件只能项目使用，如果需要开发一个独立插件就
-    需要创建一个Groovy工程作为开发自定义插件的工程
-
 ###开发独立工程插件步骤
 1，创建一个Groovy工程，然后配置插件开发所需依赖；
-2，然后实现插件类；
+2，然后实现插件类
+3，前面讲过，每个插件都有一个唯一的plugin id，定义方法如下：
+
+Gradle 通过META-INF 里的properties 文件来发现对应插件的实现类
+
+    a,首先确定plugin id
+
+    b,便在src/main/resources/META-INF/gradle-plugins/目录下
+    新建一个名字为[plugin id].properties的文件
+
+    c,在文件中添加一行内容：
+    implementation-class=[plugin id]
+    key为implementation-class固定不变，value就是我们自定义的插件实现类
+
+    d,配置好以后，生成jar包 用于 dependenies classpath
+
+    f,使用gradle 打包 Groovy 工程
+        gradle clean assemble
