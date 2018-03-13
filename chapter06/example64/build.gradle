@@ -1,0 +1,33 @@
+apply {
+    plugin 'java'
+}
+
+sourceSets {
+    nex {
+
+    }
+}
+
+task publishJar(type: Jar)
+//还可以直接发布文件对象
+//def publishFile = file('build/buildFile')
+
+group 'com.nexusunsky.test'
+version '1.0.0'
+
+artifacts {
+//    archives publishFile
+    archives publishJar
+}
+
+uploadArchives {
+    repositories {
+        //发布到Project下面指定路径
+        flatDir {
+            name 'libs'
+            dirs "$projectDir/libs"
+        }
+        //发布到本地Maven仓库 .m2/repository
+//        mavenLocal()
+    }
+}
