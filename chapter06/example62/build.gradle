@@ -1,0 +1,13 @@
+apply {
+    plugin 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    //两种等价的compile方式
+//    compile group: 'com.squareup.okhttp3', name: 'okhttp', version: '3.0.1'
+    compile 'com.squareup.okhttp3:okhttp:3.0.1'
+}
