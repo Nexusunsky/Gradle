@@ -1,0 +1,14 @@
+apply {
+    plugin 'java'
+}
+
+sourceSets {
+    nexusunsky {
+        java {
+            srcDir 'src/java'
+        }
+        resources {
+            srcDir 'src/resources'
+        }
+    }
+}
