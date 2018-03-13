@@ -61,3 +61,6 @@ project(':CustomPlugin').projectDir = new File(rootDir, 'chapter05/CustomPlugin'
 
 include ':example61'
 project(':example61').projectDir = new File(rootDir, 'chapter06/example61')
+
+include ':example62'
+project(':example62').projectDir = new File(rootDir, 'chapter06/example62')
