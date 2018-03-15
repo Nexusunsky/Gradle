@@ -4,5 +4,6 @@
 #LocalFiles
 .gradle
 .idea/
+build
 *.iml
 local.properties
