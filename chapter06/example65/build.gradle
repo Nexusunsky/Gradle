@@ -1,0 +1,35 @@
+apply {
+    plugin 'java'
+    plugin 'maven'
+}
+
+sourceSets {
+    nex {
+    }
+}
+
+task publishJar(type: Jar)
+
+group 'com.nexusunsky.test'
+version '1.0.0'
+
+artifacts {
+    archives publishJar
+}
+
+uploadArchives {
+    repositories {
+        flatDir {
+            name 'libs'
+            dirs "$projectDir/libs"
+        }
+        mavenDeployer {
+            repository(url: "http://repo.mycompany.com/nexus/content/repositories/release") {
+                authentication(userName: "admin", password: "admin123")
+            }
+//            pom.groupId = "$project.group"
+//            pom.version = "$project.version"
+//            pom.artifactId = "$artifactId"
+        }
+    }
+}
