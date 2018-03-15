@@ -11,7 +11,7 @@ sourceSets {
 dependencies {
     //Project dependencies
     nexCompile 'com.squareup.okhttp3:okhttp:3.0.1'
-    compile project(':example62')
+    compile project(':example52')
 //    compile files('libs/jarName1.jar', 'libs/jarName2.jar')
     compile fileTree(dir: 'libs', include: '*.jar')
 }
