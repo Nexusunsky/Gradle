@@ -1,6 +1,10 @@
 apply plugin: 'com.android.application'
 apply from: 'version.gradle'
 
+//获取local.properties的内容
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
 android {
     compileSdkVersion 26
     useLibrary('org.apache.http.legacy')
@@ -12,15 +16,28 @@ android {
         minSdkVersion 23
         targetSdkVersion 26
         versionCode appVersionCode
-        versionName getAppVersionName()
+        versionName appVersionName
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         dimension 'versionCode'
     }
 
+    // 签名文件
+    signingConfigs {
+        release {
+            //release签名
+            //local.properties
+            storeFile file(properties.getProperty("keystroe_storeFile"))
+            storePassword properties.getProperty("keystroe_storePassword")
+            keyAlias properties.getProperty("keystroe_keyAlias")
+            keyPassword properties.getProperty("keystroe_keyPassword")
+        }
+    }
+
     buildTypes {
         release {
+            signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -55,14 +72,14 @@ static def buildTime() {
 * get AppVersionName from git tag
 * @return git tag`s Name
 * */
-def getAppVersionName() {
+/*def getAppVersionName() {
     def stdout = new ByteArrayOutputStream()
     exec {
         commandLine 'git', 'describe', '--abbrev=0', '--tag'
         standardOutput = stdout
     }
     return stdout.toString()
-}
+}*/
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
