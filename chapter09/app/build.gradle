@@ -12,7 +12,7 @@ android {
         minSdkVersion 23
         targetSdkVersion 26
         versionCode appVersionCode
-        versionName appVersionName
+        versionName getAppVersionName()
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -48,6 +48,20 @@ static def buildTime() {
     def date = new Date()
     def formattedDate = date.format('yyyyMMdd')
     return formattedDate
+}
+
+/*
+* Project`s Method exec {commandLine;args} for shell command
+* get AppVersionName from git tag
+* @return git tag`s Name
+* */
+def getAppVersionName() {
+    def stdout = new ByteArrayOutputStream()
+    exec {
+        commandLine 'git', 'describe', '--abbrev=0', '--tag'
+        standardOutput = stdout
+    }
+    return stdout.toString()
 }
 
 dependencies {
