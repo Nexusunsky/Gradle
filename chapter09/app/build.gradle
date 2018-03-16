@@ -25,6 +25,28 @@ android {
 
     // 签名文件
     signingConfigs {
+        //将签名文件和密钥信息放到服务器上
+        //使用环境变量在打包的时候读取该值
+        //如果读取不到该值便使用默认的android 的debug的密钥和签名信息配置
+        def appStoreFile = System.getenv("STORE_FILE")
+        def appStorePassword = System.getenv("STORE_PASSWORD")
+        def appKeyAlias = System.getenv("KEY_ALIAS")
+        def appKeyPassword = System.getenv("KEY_PASSWORD")
+
+        if (!appStoreFile || !appStorePassword || !appKeyAlias || !appKeyPassword) {
+            appStoreFile = "debug.keystore"
+            appStorePassword = "android"
+            appKeyAlias = "android"
+            appKeyPassword = "androiddebugkey"
+        }
+
+        debug {
+            storeFile file(appStoreFile)
+            storePassword appStorePassword
+            keyAlias appKeyAlias
+            keyPassword appKeyPassword
+        }
+
         release {
             //release签名
             //local.properties
@@ -38,6 +60,7 @@ android {
     buildTypes {
         release {
             signingConfig signingConfigs.release
+            zipAlignEnabled true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
