@@ -3,6 +3,7 @@ package com.example.app;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
@@ -16,5 +17,6 @@ public class MainActivity extends Activity {
         for (String libraryName : libraryNames) {
             Log.d(TAG, "libraryNames:" + libraryName);
         }
+        Toast.makeText(MainActivity.this, BuildConfig.WEB_URL, Toast.LENGTH_SHORT).show();
     }
 }

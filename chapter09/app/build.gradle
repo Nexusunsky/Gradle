@@ -68,8 +68,10 @@ android {
 
     productFlavors {
         google {
+            buildConfigField 'String', "WEB_URL", '"www.google.com"'
         }
         baidu {
+            buildConfigField 'String', "WEB_URL", '"www.baidu.com"'
         }
     }
 
