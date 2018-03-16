@@ -68,11 +68,13 @@ android {
 
     productFlavors {
         google {
-            manifestPlaceholders.put("NEXUSUNSKY", "google")
         }
         baidu {
-            manifestPlaceholders.put("NEXUSUNSKY", "baidu")
         }
+    }
+
+    productFlavors.all { flavor ->
+        manifestPlaceholders.put("NEXUSUNSKY", name)
     }
 
     android.applicationVariants.all { variant ->
