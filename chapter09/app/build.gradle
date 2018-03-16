@@ -2,6 +2,8 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 26
+    useLibrary('org.apache.http.legacy')
+    //Android Gradle提供来将库添加到classpath中，方便我们在代码中使用
 
     defaultConfig {
         applicationId "com.example.app"
