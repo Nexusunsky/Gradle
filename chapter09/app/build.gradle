@@ -68,9 +68,11 @@ android {
 
     productFlavors {
         google {
+            resValue 'string', 'channel_tips', 'google is welcome!'
             buildConfigField 'String', "WEB_URL", '"www.google.com"'
         }
         baidu {
+            resValue 'string', 'channel_tips', 'baidu is welcome!'
             buildConfigField 'String', "WEB_URL", '"www.baidu.com"'
         }
     }

@@ -3,7 +3,7 @@ package com.example.app;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Toast;
+import android.widget.TextView;
 
 public class MainActivity extends Activity {
 
@@ -13,10 +13,13 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        TextView text2 = findViewById(R.id.show_text2);
+        TextView text3 = findViewById(R.id.show_text3);
         String[] libraryNames = getPackageManager().getSystemSharedLibraryNames();
         for (String libraryName : libraryNames) {
             Log.d(TAG, "libraryNames:" + libraryName);
         }
-        Toast.makeText(MainActivity.this, BuildConfig.WEB_URL, Toast.LENGTH_SHORT).show();
+        text2.setText(BuildConfig.WEB_URL);
+        text3.setText(R.string.channel_tips);
     }
 }
