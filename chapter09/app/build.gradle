@@ -96,6 +96,11 @@ android {
         timeOutInMs = 5 * 1000//5 seconds
         installOptions '-r', '-s'
     }
+
+    dexOptions {
+        javaMaxHeapSize '4g'
+        threadCount 2
+    }
 }
 
 static def buildTime() {

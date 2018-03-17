@@ -25,4 +25,18 @@
                                             (-d: allow version code downgrade)
                                             (-g: grant all runtime permissons)
                                 
+    7，Android的java源代码被编译成class字节码以后打包成apk的时候又使用dx命令优化成Android虚拟机可执行的DEX文件；
+       对于这些生成DEX文件的过程和处理，AndroidGradle插件会调用SDK的dx命令进行处理，
+       其实dx命令是一个shell脚本，调用的是Java编写的dx.jar库，是java程序处理的；
+       Android Gradle 通过 dexOptions{}闭包，提供给我们对dx操作进行一些配置；
+       dexOptions{}是一个DexOptions类型的闭包：
+       提供了五个可供配置项：
+               incremental属性，这是一个boolean类型的属性，用来配置是否需要dx的增量模式，默认false表示不启用；     
+               javaMaxHeapSize属性，配置dx命令时为其分配的最大堆内存，主要解决执行dx时内存不够用的情况；
+               jumboMode属性，用来配置是否启用jumbo模式，程序项目工程庞大，代码太多，方法数超过65535，需要开启jumbo才能构建成功；                 
+               preDexLibraries，用来配置是否预执行dexLibraries库工程，开启后大大提高增量构建的速度，不过却可能影响clean的速度；
+               threadCount，配置Android Gradle运行dx命令使用的线程数量；
+                                
+                                
+                                
                                     
