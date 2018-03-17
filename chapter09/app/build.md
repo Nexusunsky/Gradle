@@ -37,6 +37,16 @@
                preDexLibraries，用来配置是否预执行dexLibraries库工程，开启后大大提高增量构建的速度，不过却可能影响clean的速度；
                threadCount，配置Android Gradle运行dx命令使用的线程数量；
                                 
-                                
+    8，Android Gradle 提供了在构件打包时自动清理未使用资源的方法Resource Sharingking，这是一种在构建打包时，
+     因为androidGradle在构建时会拿到所有资源检测所有资源是否被引用，如果没有便不会打包到apk中，这个时机点可以控制打包的资源；                      
+     Resource Sharinking要结合Code Sharingking一起使用，也就是我们经常使用的ProGuard；
+     当编写代码中使用反射的方式去引用资源文件，针对这样的情况，AndroidGradle提供了keep方法来配置哪些资源不被清理；
+     keep 文件是res/raw/keep.xml，然后通过tools:keep属性来配置；
+     tools:shrinkMode，用来配置自动清理资源清理的模式，默认是false，安全的；
+     
+     9，除了Shrink Resources外，Android Gradle还为我们提供resConfigs，属于ProductFlavor的一个方法，
+     配置哪些类型的资源才被打包的apk中，resConfig使用非常广泛，其参数是Android开发时的资源限定符，还包括Api Level，分辨率等，
+     可以参考Android Doc.
+        
                                 
                                     
