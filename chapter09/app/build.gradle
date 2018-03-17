@@ -91,6 +91,11 @@ android {
             }
         }
     }
+
+    adbOptions {
+        timeOutInMs = 5 * 1000//5 seconds
+        installOptions '-r', '-s'
+    }
 }
 
 static def buildTime() {
