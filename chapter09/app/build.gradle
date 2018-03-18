@@ -9,7 +9,7 @@ android {
     compileSdkVersion 26
     useLibrary('org.apache.http.legacy')
     //Android Gradle提供来将库添加到classpath中，方便我们在代码中使用
-    flavorDimensions "versionCode"
+    flavorDimensions "versionCode", "abi", "version"
 
     defaultConfig {
         applicationId "com.example.app"
@@ -17,10 +17,6 @@ android {
         targetSdkVersion 26
         versionCode appVersionCode
         versionName appVersionName
-
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
-        dimension 'versionCode'
     }
 
     // 签名文件
@@ -70,9 +66,15 @@ android {
 
     productFlavors {
         google {
+            dimension 'versionCode'
+
+            //Gradle config resValue
             resValue 'string', 'channel_tips', 'google is welcome!'
+
             buildConfigField 'String', "WEB_URL", '"www.google.com"'
+
             consumerProguardFiles 'proguard-android.txt', 'proguard-rules.pro'
+
             testApplicationId 'com.example.app.test'
             testFunctionalTest true
             testHandleProfiling true
@@ -80,8 +82,25 @@ android {
             testInstrumentationRunnerArguments.put("coverage", "true")
         }
         baidu {
+            dimension 'versionCode'
+
             resValue 'string', 'channel_tips', 'baidu is welcome!'
+
             buildConfigField 'String', "WEB_URL", '"www.baidu.com"'
+
+            testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        }
+        free {
+            dimension 'version'
+        }
+        paid {
+            dimension 'version'
+        }
+        x86 {
+            dimension 'abi'
+        }
+        arm {
+            dimension 'abi'
         }
     }
 
