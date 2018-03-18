@@ -74,5 +74,8 @@ project(':example64').projectDir = new File(rootDir, 'chapter06/example64')
 include ':example65'
 project(':example65').projectDir = new File(rootDir, 'chapter06/example65')
 
+include ':alib'
+project(':alib').projectDir = new File(rootDir, 'chapter09/alib')
+
 include ':app'
 project(':app').projectDir = new File(rootDir, 'chapter09/app')
