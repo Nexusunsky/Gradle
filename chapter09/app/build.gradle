@@ -72,6 +72,7 @@ android {
         google {
             resValue 'string', 'channel_tips', 'google is welcome!'
             buildConfigField 'String', "WEB_URL", '"www.google.com"'
+            consumerProguardFiles 'proguard-android.txt', 'proguard-rules.pro'
         }
         baidu {
             resValue 'string', 'channel_tips', 'baidu is welcome!'
