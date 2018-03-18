@@ -73,6 +73,9 @@ android {
             resValue 'string', 'channel_tips', 'google is welcome!'
             buildConfigField 'String', "WEB_URL", '"www.google.com"'
             consumerProguardFiles 'proguard-android.txt', 'proguard-rules.pro'
+            testApplicationId 'com.example.app.test'
+            testFunctionalTest true
+            testHandleProfiling true
         }
         baidu {
             resValue 'string', 'channel_tips', 'baidu is welcome!'
