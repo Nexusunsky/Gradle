@@ -8,8 +8,9 @@ properties.load(project.rootProject.file('local.properties').newDataInputStream(
 android {
     compileSdkVersion 26
     useLibrary('org.apache.http.legacy')
+
     //Android Gradle提供来将库添加到classpath中，方便我们在代码中使用
-    flavorDimensions "versionCode", "abi", "version"
+    flavorDimensions "version"/*, "abi", "version"*/
 
     defaultConfig {
         applicationId "com.example.app"
@@ -66,7 +67,7 @@ android {
 
     productFlavors {
         google {
-            dimension 'versionCode'
+            dimension 'version'
 
             //Gradle config resValue
             resValue 'string', 'channel_tips', 'google is welcome!'
@@ -82,7 +83,7 @@ android {
             testInstrumentationRunnerArguments.put("coverage", "true")
         }
         baidu {
-            dimension 'versionCode'
+            dimension 'version'
 
             resValue 'string', 'channel_tips', 'baidu is welcome!'
 
@@ -90,18 +91,18 @@ android {
 
             testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         }
-        free {
-            dimension 'version'
-        }
-        paid {
-            dimension 'version'
-        }
-        x86 {
-            dimension 'abi'
-        }
-        arm {
-            dimension 'abi'
-        }
+//        free {
+//            dimension 'version'
+//        }
+//        paid {
+//            dimension 'version'
+//        }
+//        x86 {
+//            dimension 'abi'
+//        }
+//        arm {
+//            dimension 'abi'
+//        }
     }
 
     productFlavors.all { flavor ->
@@ -121,7 +122,7 @@ android {
 
     adbOptions {
         timeOutInMs = 5 * 1000//5 seconds
-        installOptions '-r', '-s'
+        installOptions '-r'
     }
 
     dexOptions {
@@ -151,5 +152,7 @@ static def buildTime() {
 }*/
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    googleImplementation project(':alib')
+    baiduImplementation project(':alib')
 }

@@ -15,11 +15,13 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         TextView text2 = findViewById(R.id.show_text2);
         TextView text3 = findViewById(R.id.show_text3);
+        TextView text4 = findViewById(R.id.show_text4);
         String[] libraryNames = getPackageManager().getSystemSharedLibraryNames();
         for (String libraryName : libraryNames) {
             Log.d(TAG, "libraryNames:" + libraryName);
         }
         text2.setText(BuildConfig.WEB_URL);
         text3.setText(R.string.channel_tips);
+        text4.setText(R.string.test_arr_flavor);
     }
 }

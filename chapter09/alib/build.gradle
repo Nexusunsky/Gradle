@@ -1,0 +1,40 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 26
+    flavorDimensions 'version'
+    defaultConfig {
+        //设置Android Lib 默认发布包的BuildType（默认是release）
+        targetSdkVersion 26
+        minSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+
+    //指明的productFlavor 需要和对应依赖的工程保持一致
+    productFlavors {
+        google {
+            dimension 'version'
+            resValue 'string', 'test_arr_flavor', 'google is in arr!'
+        }
+        baidu {
+            dimension 'version'
+            resValue 'string', 'test_arr_flavor', 'baidu is in arr!'
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+
+        }
+    }
+    defaultPublishConfig "googleRelease"
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+}
