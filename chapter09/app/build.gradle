@@ -61,7 +61,8 @@ android {
         release {
             signingConfig signingConfigs.release
             zipAlignEnabled true
-            minifyEnabled false
+            //Config shrinkResources should set minifyEnabled first.
+            minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
