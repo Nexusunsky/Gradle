@@ -76,6 +76,8 @@ android {
             testApplicationId 'com.example.app.test'
             testFunctionalTest true
             testHandleProfiling true
+            testInstrumentationRunner 'android.test.InstrumentationRunner'
+            testInstrumentationRunnerArguments.put("coverage", "true")
         }
         baidu {
             resValue 'string', 'channel_tips', 'baidu is welcome!'
